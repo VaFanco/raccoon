@@ -253,6 +253,9 @@
   </nav>
 
   <div class="screen-wrap">
+    <div id="protocolWarning" style="display:none; background:rgba(224,72,58,.12); border:1px solid rgba(224,72,58,.45); border-radius:8px; padding:12px 14px; margin-bottom:12px; font-size:13px; line-height:1.55; color:var(--paper);">
+      <strong style="color:var(--rec-red);">Heads up:</strong> this page is open as a local file (<span class="id">file://</span>), and YouTube blocks its player there (Error 153). Host the file on a free service like tiiny.host or Netlify, or serve it locally, and the cams will play.
+    </div>
     <div class="screen">
       <div class="osd"><span class="rec" aria-hidden="true"></span><span id="osdLabel">CAM</span></div>
       <iframe id="player" title="Raccoon Saloon live cam"
@@ -279,11 +282,13 @@
   // If a stream restarts, its ID changes; use "Update cam ID" to paste the new one.
   const cams = [
     { name: "Inside Multi Cam", id: "rYBr0W-ZAxw" },
-    { name: "Woodshed Cam",     id: "-h1orcL7bKM" },
-    { name: "Attic Cam",        id: "d2RE0S8n5iw" },
-    { name: "Porch Cam",        id: "_JEoQ_RfBao" },
-    { name: "North Cam",        id: "vcDzerGCC74" },
-    { name: "Basement Cam",     id: "lvHbi5wCosI" }
+    { name: "Living Room Cam", id: "lyWSzCY4SDY" },
+    { name: "Playroom Cam",    id: "wwBk_8U85go" },
+    { name: "Woodshed Cam",    id: "U-i7n9TvaFQ" },
+    { name: "Attic Cam",       id: "K7Y-U7YgipA" },
+    { name: "Porch Cam",       id: "_JEoQ_RfBao" },
+    { name: "North Cam",       id: "vcDzerGCC74" },
+    { name: "Basement Cam",    id: "AY7j5xU3QNg" }
   ];
 
   let current = 0;
@@ -342,6 +347,10 @@
   });
 
   switchCam(0);
+
+  if (location.protocol === "file:") {
+    document.getElementById("protocolWarning").style.display = "block";
+  }
 </script>
 
 </body>
